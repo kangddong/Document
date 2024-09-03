@@ -14,8 +14,10 @@ UIKit 및 여러 문서들을 Swift를 기준으로 작성하고있습니다.
 
 오역 제보 및 문의는 [github](https://github.com/kangddong/Document)에서 받습니다.
 github으로 pull request를 주시면 반영하도록 하겠습니다.
+기여를 희망하시는 분은 [Pull Request 가이드](pull-request.md) 를 참고해주세요
 목차는 알파벳 순으로 정리하고있습니다.
-중복작업을 피하기 위해서 번역을 시작할 때 issue를 걸어놓고 시작하고 있습니다. 참고 부탁드립니다.
+중복작업을 피하기 위해서 번역을 시작할 때 issue를 걸어놓고 시작하고 있습니다. 
+참고 부탁드립니다.
 
 ## 목차
 
