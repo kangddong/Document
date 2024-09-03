@@ -39,7 +39,7 @@ github으로 pull request를 주시면 반영하도록 하겠습니다.
 ### App Services
 
 * BackgroundTasks
-* [Combine](app-services/combine.md)
+* [Combine](app-services/combine/)
 * Core Data
 * Core Foundation
 * Core Location
