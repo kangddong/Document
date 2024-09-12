@@ -39,5 +39,5 @@ UIView는 모든 뷰에 대한 루트 클래스이며 일반적인 동작을 정
 - [UIKit Catalog: 뷰 및 컨트롤 생성 및 커스터마이징](https://developer.apple.com/documentation/uikit/mac_catalyst/uikit_catalog_creating_and_customizing_views_and_controls)
 ### 컨테이너 뷰
 
-- Collection views
+- [Collection views](app-frameworks/uikit/views-and-controls/collection-views/README.md)
 
