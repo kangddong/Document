@@ -6,8 +6,9 @@
 
 * [Foundation](app-frameworks/foundation/README.md)
  
-* [UIKit](app-frameworks/uikit/README.md)
+* [UIKit](app-frameworks/uikit/README.md)  
   - [Views and controls](app-frameworks/uikit/views-and-controls/README.md)
+    - [Collection views](app-frameworks/uikit/views-and-controls/collection-views/README.md)
 * [Swift](app-frameworks/swift/README.md)
   
 * [SwiftUI](app-frameworks/swiftui/README.md)
