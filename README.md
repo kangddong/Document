@@ -7,7 +7,7 @@
 ## 들어가기 전에
 
 본 문서는 Apple 개발자 페이지의 [Documentation](https://developer.apple.com/documentation/)을 번역합니다.
-
+번역기와 함께하기 때문에 오타 및 오역이 있을 수 있습니다.
 UIKit 및 여러 문서들을 Swift를 기준으로 작성하고있습니다.
 
 ### 번역 참여
