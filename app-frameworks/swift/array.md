@@ -12,6 +12,7 @@ struct Array<Element>
 ```
 
 <hr class="overview">
+
 ## 개요 <a id="overview"></a>
 
 배열은 앱에서 가장 일반적으로 사용되는 데이터 유형 중 하나입니다. 배열을 사용하여 앱의 데이터를 구성합니다. 특히, 배열 유형을 사용하여 배열의 요소 유형인 단일 유형의 요소를 보유합니다. 배열은 정수에서 문자열, 클래스에 이르기까지 모든 종류의 요소를 저장할 수 있습니다.
@@ -230,7 +231,9 @@ ContiguousArray 및 ArraySlice 유형은 브릿지되지 않습니다; 이러한
 ## 주제 <a id="topics"></a>
 
 <hr class="relationships">
+
 ## 연관 관계 <a id="relationships"></a>
 
 <hr class="see-also">
+
 ## 같이 보기 <a id="see-also"></a>
