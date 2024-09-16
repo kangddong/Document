@@ -10,6 +10,7 @@
   - [Views and controls](app-frameworks/uikit/views-and-controls/README.md)
     - [Collection views](app-frameworks/uikit/views-and-controls/collection-views/README.md)
 * [Swift](app-frameworks/swift/README.md)
+	* [Array](app-frameworks/swift/array.md)
   
 * [SwiftUI](app-frameworks/swiftui/README.md)
   
