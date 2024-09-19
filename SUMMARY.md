@@ -6,7 +6,7 @@
 
 * [Foundation](app-frameworks/foundation/README.md)
  
-* [UIKit](app-frameworks/uikit/README.md)  
+* [UIKit](app-frameworks/uikit/README.md)
   - [Views and controls](app-frameworks/uikit/views-and-controls/README.md)
     - [Collection views](app-frameworks/uikit/views-and-controls/collection-views/README.md)
 * [Swift](app-frameworks/swift/README.md)
@@ -27,8 +27,8 @@
 ## App Services
 
 * [Combine](app-services/combine.md)
+* [Social](app-services/social/)
 * [WebKit](app-services/webkit/README.md)
-
 ## Media
 
 * [AVFoundation](media/avfoundation/README.md)

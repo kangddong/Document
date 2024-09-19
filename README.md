@@ -49,6 +49,7 @@ github으로 pull request를 주시면 반영하도록 하겠습니다.
 * NotificationCenter
 * PassKit \(Apple Pay and Wallet\)
 * PreferencePanes
+* [Social](app-services/social/)
 * StoreKit
 * Swift Charts
 * Swift packages
