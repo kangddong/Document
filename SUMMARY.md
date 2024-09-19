@@ -27,7 +27,7 @@
 ## App Services
 
 * [Combine](app-services/combine.md)
-* [Social](app-services/social/)
+* [Social](app-services/social/README.md)
 * [WebKit](app-services/webkit/README.md)
 ## Media
 
