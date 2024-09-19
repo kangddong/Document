@@ -1,6 +1,6 @@
 
 > 출처
-> [https://developer.apple.com/documentation/gamecontroller/gccontroller](https://developer.apple.com/documentation/gamecontroller/gccontroller)
+> [https://developer.apple.com/documentation/social](https://developer.apple.com/documentation/social)
 # Social
 표준 시스템 인터페이스를 사용하여 지원되는 소셜 네트워킹 서비스에 콘텐츠를 게시합니다.
 
