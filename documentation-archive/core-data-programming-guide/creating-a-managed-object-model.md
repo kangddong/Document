@@ -1,3 +1,8 @@
+
+> 출처
+> [https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html#//apple_ref/doc/uid/TP40001075-CH30-SW12](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html#//apple_ref/doc/uid/TP40001075-CH30-SW12)
+
+
 코어 데이터의 기능의 대부분은 애플리케이션의 엔티티, 속성 및 그들 사이의 관계를 설명하기 위해 생성한 스키마에 달려 있습니다. Core Data는 [NSManagedObjectModel]()의 인스턴스인 관리 대상 모델이라고 불리는 스키마를 사용합니다. 일반적으로, 모델이 풍부할수록, 더 나은 코어 데이터가 당신의 애플리케이션을 지원할 수 있습니다.
 
 관리되는 객체 모델을 통해 Core Data는 영구 저장소의 레코드에서 애플리케이션에서 사용하는 관리되는 객체로 매핑할 수 있습니다. 이 모델은 엔티티 설명 개체([NSEntityDescription]()의 인스턴스)의 모음입니다. 엔티티 설명은 엔티티(데이터베이스의 테이블이라고 생각할 수 있음)를 이름, 애플리케이션에서 엔티티를 나타내는 데 사용되는 클래스 이름, 그리고 어떤 속성(속성 및 관계)을 가지고 있는지에 대해 설명합니다.
