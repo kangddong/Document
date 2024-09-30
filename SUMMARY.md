@@ -32,3 +32,13 @@
 ## Media
 
 * [AVFoundation](media/avfoundation/README.md)
+
+## Documentation Archive
+
+- [Core Data 프로그래밍 가이드](documentation-archive/core-data-programming-guide/README.md)
+    - [Getting Started](documentation-archive/core-data-programming-guide/what-is-core-data.md)
+        - [What Is Core Data?](documentation-archive/core-data-programming-guide/what-is-core-data.md)
+        - [Creating a Managed Object Model](documentation-archive/core-data-programming-guide/creating-a-managed-object-model.md)
+    - [Managing the Object Life Cycle](documentation-archive/core-data-programming-guide/managed-objects-and-references.md)
+	    - [Managed Objects and References](documentation-archive/core-data-programming-guide/managed-objects-and-references.md)
+	    - [Creating Managed Object Relationships](documentation-archive/core-data-programming-guide/creating-managed-object-relationships.md)
