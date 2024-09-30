@@ -42,7 +42,7 @@ github으로 pull request를 주시면 반영하도록 하겠습니다.
 
 * BackgroundTasks
 * [Combine](app-services/combine/)
-* Core Data
+* [Core Data](app-services/core-data/)
 * Core Foundation
 * Core Location
 * MapKit
