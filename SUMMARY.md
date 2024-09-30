@@ -32,3 +32,8 @@
 ## Media
 
 * [AVFoundation](media/avfoundation/README.md)
+
+## Documentation Archive
+
+- [Core Data 프로그래밍 가이드](documentation-archive/core-data-programming-guide/README.md)
+  - [What Is Core Data?](documentation-archive/core-data-programming-guide/what-is-core-data.md)
