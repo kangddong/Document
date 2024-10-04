@@ -42,3 +42,10 @@
     - [Managing the Object Life Cycle](documentation-archive/core-data-programming-guide/managed-objects-and-references.md)
 	    - [Managed Objects and References](documentation-archive/core-data-programming-guide/managed-objects-and-references.md)
 	    - [Creating Managed Object Relationships](documentation-archive/core-data-programming-guide/creating-managed-object-relationships.md)
+	
+- [App Extension 프로그래밍 가이드](documentation-archive/app-extension-programming-guide/README.md)
+	- [App Extension Essentials]()
+		- [App Extensions Increase Your Impact](documentation-archive/app-extension-programming-guide/app-extensions-increase-your-impact.md)
+		- [Understand How an App Extension Works](documentation-archive/app-extension-programming-guide/understand-how-an-app-extension-works.md)
+		- [Creating an App Extension](documentation-archive/app-extension-programming-guide/creating-an-app-extension.md)
+		- [Handling Common Scenarios](documentation-archive/app-extension-programming-guide/handling-common-scenarios.md)
