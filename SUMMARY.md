@@ -28,6 +28,8 @@
 
 * [Combine](app-services/combine.md)
 * [Core Data](app-services/core-data/README.md/)
+	* Core Data Stack
+		* [NSManagedObjectModel](app-services/core-data/core-data-stack/nsmanagedobjectmodel.md/)
 * [Social](app-services/social/README.md)
 * [WebKit](app-services/webkit/README.md)
 ## Media
