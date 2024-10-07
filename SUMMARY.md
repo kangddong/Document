@@ -44,8 +44,18 @@
 	    - [Creating Managed Object Relationships](documentation-archive/core-data-programming-guide/creating-managed-object-relationships.md)
 	
 - [App Extension 프로그래밍 가이드](documentation-archive/app-extension-programming-guide/README.md)
-	- [App Extension Essentials]()
+	- [App Extension Essentials](documentation-archive/app-extension-programming-guide/app-extensions-increase-your-impact.md)
 		- [App Extensions Increase Your Impact](documentation-archive/app-extension-programming-guide/app-extensions-increase-your-impact.md)
 		- [Understand How an App Extension Works](documentation-archive/app-extension-programming-guide/understand-how-an-app-extension-works.md)
 		- [Creating an App Extension](documentation-archive/app-extension-programming-guide/creating-an-app-extension.md)
 		- [Handling Common Scenarios](documentation-archive/app-extension-programming-guide/handling-common-scenarios.md)
+	- [App Extension Type](documentation-archive/app-extension-programming-guide/share.md)
+		- Action
+		- Audio Unit
+		- Content Blocker
+		- Custom Keyboard
+		- Document Provider
+		- Finder Sync
+		- Photo Editing
+		- [Share](documentation-archive/app-extension-programming-guide/share.md)
+		- Today

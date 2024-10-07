@@ -11,7 +11,7 @@
 
 앱 확장 프로그램과 포함 앱 간에 코드를 공유하기 위해 임베디드 프레임워크를 만들 수 있습니다. 예를 들어, 사진 편집 확장 및 포함 앱에 사용할 이미지 필터를 개발하는 경우, 필터 코드를 프레임워크에 넣고 프레임워크를 두 대상 모두에 삽입합니다.
 
-일부 API는 앱 확장 프로그램에서 사용할 수 없음에 설명된 대로 임베디드 프레임워크에 [앱 확장에 사용할 수 없는 API](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionOverview.html#//apple_ref/doc/uid/TP40014214-CH2-SW6)가 포함되어 있지 않은지 확인하십시오. 이러한 API를 포함하는 사용자 지정 프레임워크가 있는 경우, 포함된 앱에서 안전하게 연결할 수 있지만 해당 코드를 앱의 포함된 확장과 공유할 수는 없습니다. 앱 스토어는 그러한 프레임워크에 연결되거나 사용할 수 없는 API를 사용하는 모든 앱 확장 프로그램을 거부합니다.
+일부 API는 앱 확장 프로그램에서 사용할 수 없음에 설명된 대로 임베디드 프레임워크에 [앱 확장 프로그램에 사용할 수 없는 API](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionOverview.html#//apple_ref/doc/uid/TP40014214-CH2-SW6)가 포함되어 있지 않은지 확인하십시오. 이러한 API를 포함하는 사용자 지정 프레임워크가 있는 경우, 포함된 앱에서 안전하게 연결할 수 있지만 해당 코드를 앱의 포함된 확장과 공유할 수는 없습니다. 앱 스토어는 그러한 프레임워크에 연결되거나 사용할 수 없는 API를 사용하는 모든 앱 확장 프로그램을 거부합니다.
 
 임베디드 프레임워크를 사용하도록 앱 확장 프로그램을 구성하려면 대상의 "Require Only App-Extension-Safe API" 빌드 설정을 예로 설정하십시오. 그렇지 않은 경우, Xcode는 "dylib에 대한 링크는 애플리케이션 확장에서 사용하기에 안전하지 않습니다"라는 경고를 표시하여 그렇게 하도록 상기시켜줍니다.
 
