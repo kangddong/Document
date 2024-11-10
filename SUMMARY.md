@@ -11,7 +11,9 @@
     - [Collection views](app-frameworks/uikit/views-and-controls/collection-views/README.md)
 * [Swift](app-frameworks/swift/README.md)
 	* [Array](app-frameworks/swift/array.md)
-  
+	* [Swift Standard Library](app-frameworks/swift/swift-standard-library/README.md)
+		* [Basic Behaviors](app-frameworks/swift/swift-standard-library/basic-behaviors/README.md)
+			* [Identifiable](app-frameworks/swift/swift-standard-library/basic-behaviors/identifiable.md)
 * [SwiftUI](app-frameworks/swiftui/README.md)
   
 
