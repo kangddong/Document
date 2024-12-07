@@ -5,12 +5,14 @@
 앱 UI의 여러 인스턴스를 동시에 관리하고, 리소스를 UI의 적절한 인스턴스로 보냅니다.
 
 <hr class="header">
+
 ## 개요
 UIKit은 [UIWindowScene](https://developer.apple.com/documentation/uikit/uiwindowscene) 객체를 사용하여 앱 UI의 각 인스턴스를 관리합니다. 장면에는 UI의 하나의 인스턴스를 제시하기 위한 창과 뷰 컨트롤러가 포함되어 있습니다. 각 장면에는 UIKit과 앱 간의 상호 작용을 조정하는 데 사용하는 해당 [UIWindowSceneDelegate](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate) 객체가 있습니다. 장면은 서로 동시에 실행되며 동일한 메모리와 앱 프로세스 공간을 공유합니다. 결과적으로, 단일 앱에 여러 장면과 장면 위임 객체가 동시에 활성화될 수 있습니다.
 
 <div align="center">
 <img src = https://docs-assets.developer.apple.com/published/2ca9357918eb89b8fdb96cf9e324b12a/media-3335652~dark@2x.png height="500">
 </div>
+
 [UIApplicationDelegate](https://developer.apple.com/documentation/uikit/uiapplicationdelegate) 객체에서 새 장면의 구성을 관리하세요.
 
 <hr class="overview">
