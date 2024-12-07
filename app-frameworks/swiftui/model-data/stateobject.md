@@ -177,18 +177,8 @@ Swift에서 Observation의 이점을 활용하려면 기존 앱을 업데이트�
 [Monitoring data changes in your app](https://developer.apple.com/documentation/swiftui/monitoring-model-data-changes-in-your-app)
 관찰 가능한 개체를 사용하여 앱의 사용자 인터페이스에서 데이터에 대한 변경 사항을 표시합니다.
 
-[`struct ObservedObject`](https://developer.apple.com/documentation/swiftui/observedobject)
+[`struct ObservedObject`](app-frameworks/swiftui/model-data/observedobject.md)
 	관찰 가능한 객체에 가입하고 관찰 가능한 객체가 변경될 때마다 뷰를 무효화하는 속성 래퍼 유형.
 
 [`protocol ObservableObject : AnyObject`](https://developer.apple.com/documentation/Combine/ObservableObject)
 	객체가 변경되기 전에 방출되는 게시자가 있는 객체 유형.
-
-
-
-
-
-
-
-
-
-
