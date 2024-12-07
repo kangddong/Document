@@ -18,6 +18,10 @@
 		* [Basic Behaviors](app-frameworks/swift/swift-standard-library/basic-behaviors/README.md)
 			* [Identifiable](app-frameworks/swift/swift-standard-library/basic-behaviors/identifiable.md)
 * [SwiftUI](app-frameworks/swiftui/README.md)
+	* [Model data](app-frameworks/swiftui/model-data/README.md)
+		* [StateObject](app-frameworks/swiftui/model-data/stateobject.md)
+		* [ObservedObject](app-frameworks/swiftui/model-data/observedobject.md)
+		* [EnvironmentObject](app-frameworks/swiftui/model-data/environmentobject.md)
   
 
 ## Graphics and Games
@@ -31,7 +35,8 @@
 
 ## App Services
 
-* [Combine](app-services/combine.md)
+* [Combine](app-services/combine/README.md)
+	* [ObservableObject](app-services/combine/observable-objects/observableobject.md)
 * [Social](app-services/social/README.md)
 * [WebKit](app-services/webkit/README.md)
 ## Media
