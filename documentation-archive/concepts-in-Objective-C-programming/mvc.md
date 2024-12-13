@@ -1,164 +1,169 @@
 # Model-View-Controller
 
-The Model-View-Controller design pattern (MVC) is quite old. Variations of it have been around at least since the early days of Smalltalk. It is a high-level pattern in that it concerns itself with the global architecture of an application and classifies objects according to the general roles they play in an application. It is also a compound pattern in that it comprises several, more elemental patterns.
+모델-뷰-컨트롤러 디자인 패턴(MVC)은 꽤 오래되었습니다. 그것의 변형은 적어도 스몰토크의 초창기부터 존재해 왔다. 이는 애플리케이션의 글로벌 아키텍처와 관련이 있고 애플리케이션에서 수행하는 일반적인 역할에 따라 객체를 분류한다는 점에서 높은 수준의 패턴입니다. 그것은 또한 몇 가지, 더 기본적인 패턴을 포함한다는 면에서 복합 패턴이다.
 
-Object-oriented programs benefit in several ways by adapting the MVC design pattern for their designs. Many objects in these programs tend to be more reusable and their interfaces tend to be better defined. The programs overall are more adaptable to changing requirements—in other words, they are more easily extensible than programs that are not based on MVC. Moreover, many technologies and architectures in Cocoa—such as bindings, the document architecture, and scriptability—are based on MVC and require that your custom objects play one of the roles defined by MVC.
+객체 지향 프로그램은 MVC 디자인 패턴을 디자인에 맞게 조정함으로써 여러 가지 방법으로 이점을 얻습니다. 이러한 프로그램의 많은 객체는 더 재사용 가능한 경향이 있으며 인터페이스가 더 잘 정의되는 경향이 있습니다. 프로그램은 전반적으로 변화하는 요구 사항에 더 잘 적응할 수 있습니다. 즉, MVC를 기반으로 하지 않는 프로그램보다 더 쉽게 확장할 수 있습니다. 게다가, 바인딩, 문서 아키텍처 및 스크립팅 가능성과 같은 Cocoa의 많은 기술과 아키텍처는 MVC를 기반으로 하며 사용자 지정 객체가 MVC에 의해 정의된 역할 중 하나를 수행해야 합니다.
 
-## Roles and Relationships of MVC Objects
+## 객체들의 역활과 관계
 
-The MVC design pattern considers there to be three types of objects: model objects, view objects, and controller objects. The MVC pattern defines the roles that these types of objects play in the application and their lines of communication. When designing an application, a major step is choosing—or creating custom classes for—objects that fall into one of these three groups. Each of the three types of objects is separated from the others by abstract boundaries and communicates with objects of the other types across those boundaries.
+MVC 디자인 패턴은 세 가지 유형의 객체가 있다고 생각합니다: 모델 객체, 뷰 객체 및 컨트롤러 객체. MVC 패턴은 이러한 유형의 객체가 애플리케이션과 통신 라인에서 수행하는 역할을 정의합니다. 응용 프로그램을 설계할 때, 주요 단계는 이 세 그룹 중 하나에 속하는 객체를 선택하거나 사용자 지정 클래스를 만드는 것입니다. 세 가지 유형의 객체 각각은 추상적인 경계에 의해 다른 객체와 분리되며 이러한 경계를 넘어 다른 유형의 객체와 통신합니다.
 
-### Model Objects Encapsulate Data and Basic Behaviors
+### 모델 객체는 데이터와 기본 동작을 캡슐화합니다.
 
-Model objects represent special knowledge and expertise. They hold an application’s data and define the logic that manipulates that data. A well-designed MVC application has all its important data encapsulated in model objects. Any data that is part of the persistent state of the application (whether that persistent state is stored in files or databases) should reside in the model objects once the data is loaded into the application. Because they represent knowledge and expertise related to a specific problem domain, they tend to be reusable.
+모델 객체는 특별한 지식과 전문성을 나타냅니다. 그들은 애플리케이션의 데이터를 보유하고 그 데이터를 조작하는 논리를 정의합니다. 잘 설계된 MVC 애플리케이션은 모든 중요한 데이터를 모델 객체에 캡슐화합니다. 애플리케이션의 영구 상태의 일부인 모든 데이터(그 영구 상태가 파일에 저장되든 데이터베이스에 저장되든)는 데이터가 애플리케이션에 로드되면 모델 객체에 상주해야 합니다. 그것들은 특정 문제 영역과 관련된 지식과 전문성을 나타내기 때문에 재사용 가능한 경향이 있다.
 
-Ideally, a model object has no explicit connection to the user interface used to present and edit it. For example, if you have a model object that represents a person (say you are writing an address book), you might want to store a birthdate. That’s a good thing to store in your Person model object. However, storing a date format string or other information on how that date is to be presented is probably better off somewhere else.
+이상적으로, 모델 객체는 그것을 제시하고 편집하는 데 사용되는 사용자 인터페이스에 명시적으로 연결되어 있지 않다. 예를 들어, 만약 당신이 사람을 나타내는 모델 객체를 가지고 있다면(당신이 주소록을 쓰고 있다고 가정해 봅시다), 당신은 생년월일을 저장하고 싶을 수도 있습니다. 그것은 당신의 Person 모델 객체에 저장하는 것이 좋습니다. 그러나, 날짜 형식 문자열이나 그 날짜가 어떻게 제시될지에 대한 다른 정보를 저장하는 것이 아마도 다른 곳에서 더 나을 것이다.
 
-In practice, this separation is not always the best thing, and there is some room for flexibility here, but in general a model object should not be concerned with interface and presentation issues. One example where a bit of an exception is reasonable is a drawing application that has model objects that represent the graphics displayed. It makes sense for the graphic objects to know how to draw themselves because the main reason for their existence is to define a visual thing. But even in this case, the graphic objects should not rely on living in a particular view or any view at all, and they should not be in charge of knowing when to draw themselves. They should be asked to draw themselves by the view object that wants to present them.
+실제로, 이 분리가 항상 최선은 아니며, 여기에는 유연성의 여지가 있지만, 일반적으로 모델 객체는 인터페이스 및 프레젠테이션 문제와 관련이 없어야 합니다. 약간의 예외가 합리적인 한 가지 예는 표시된 그래픽을 나타내는 모델 객체가 있는 도면 응용 프로그램입니다. 그래픽 객체가 존재하는 주요 이유는 시각적인 것을 정의하기 위해서 자신을 그리는 방법을 아는 것이 합리적입니다. 그러나 이 경우에도 그래픽 객체는 특정 뷰나 다른 뷰에 전혀 의존해서는 안 되며, 언제 자신을 그려야 하는지 아는 책임을 져야 안 됩니다. 그들은 그들을 제시하고자 하는 뷰 객체에 의해 스스로를 그리도록 요청 받아야 한다.
+### 뷰 객체는 유저에게 정보를 표시한다
 
-### View Objects Present Information to the User
+뷰 객체는 애플리케이션 모델의 데이터를 표시하는 방법을 알고 있으며, 사용자가 편집할 수 있도록 허용할 수 있습니다. 뷰는 그것이 보여주는 데이터를 저장하는 것에 대한 책임을 져야 한다. (물론, 이것은 뷰가 실제로 표시하는 데이터를 저장하지 않는다는 것을 의미하지는 않습니다. 뷰는 성능상의 이유로 데이터를 캐시하거나 유사한 트릭을 수행할 수 있습니다. 뷰 객체는 모델 객체의 한 부분만 표시하거나 전체 모델 객체 또는 심지어 많은 다른 모델 객체를 표시하는 역할을 할 수 있습니다. 뷰는 다양한 종류가 있다.
 
-A view object knows how to display, and might allow users to edit, the data from the application’s model. The view should not be responsible for storing the data it is displaying. (This does not mean the view never actually stores data it’s displaying, of course. A view can cache data or do similar tricks for performance reasons). A view object can be in charge of displaying just one part of a model object, or a whole model object, or even many different model objects. Views come in many different varieties.
+뷰 객체는 재사용 및 구성 가능한 경향이 있으며, 애플리케이션 간의 일관성을 제공합니다. Cocoa에서 AppKit 프레임워크는 많은 수의 뷰 객체를 정의하고 인터페이스 빌더 라이브러리에서 많은 객체를 제공합니다. [NSButton](https://developer.apple.com/documentation/appkit/nsbutton) 객체와 같은 AppKit의 객체를 재사용함으로써 애플리케이션의 버튼이 다른 Cocoa 애플리케이션의 버튼과 동일하게 작동하도록 보장하여 애플리케이션 전반에 걸쳐 모양과 동작에서 높은 수준의 일관성을 보장합니다.
 
-View objects tend to be reusable and configurable, and they provide consistency between applications. In Cocoa, the AppKit framework defines a large number of view objects and provides many of them in the Interface Builder library. By reusing the AppKit’s view objects, such as `[NSButton](https://developer.apple.com/documentation/appkit/nsbutton)` objects, you guarantee that buttons in your application behave just like buttons in any other Cocoa application, assuring a high level of consistency in appearance and behavior across applications.
+뷰는 모델을 올바르게 표시하고 있는지 확인해야 합니다. 결과적으로, 그것은 보통 모델의 변화에 대해 알아야 한다. 모델 객체는 특정 뷰 객체에 연결되어서는 안 되기 때문에 변경되었음을 나타내는 일반적인 방법이 필요합니다.
+### 컨트롤러 객체는 모델을 뷰에 연결합니다. <a id="Controller-Objects Tie-the-Model-to-the-View"></a>
 
-A view should ensure it is displaying the model correctly. Consequently, it usually needs to know about changes to the model. Because model objects should not be tied to specific view objects, they need a generic way of indicating that they have changed. 
+컨트롤러 객체는 애플리케이션의 뷰 객체와 모델 객체 사이의 중개자 역할을 합니다. 컨트롤러는 뷰가 표시해야 할 모델 객체에 접근할 수 있도록 돕고, 모델의 변경 사항을 뷰가 알 수 있도록 전달하는 역할을 맡습니다. 컨트롤러 객체는 또한 애플리케이션에 대한 설정 및 조정 작업을 수행하고 다른 객체의 수명 주기를 관리할 수 있습니다
 
-### Controller Objects Tie the Model to the View
+일반적인 코코아 MVC 설계에서 사용자가 값을 입력하거나 뷰 객체를 통해 선택을 표시하면 해당 값 또는 선택이 컨트롤러 객체로 전달됩니다. 컨트롤러 객체는 사용자 입력을 애플리케이션별 방식으로 해석한 다음 모델 객체에 이 뷰의 입력으로 무엇을 해야 하는지 알려줄 수 있습니다(예: "새 값 추가" 또는 "현재 레코드 삭제") 또는 모델 객체가 속성 중 하나에 변경된 값을 반영하도록 할 수 있습니다. 이 동일한 사용자 입력을 기반으로 일부 컨트롤러 객체는 버튼이 자체를 비활성화하도록 지시하는 것과 같이 뷰 객체에 모양이나 동작의 측면을 변경하도록 지시할 수도 있습니다. 반대로, 모델 객체가 변경될 때 - 예를 들어, 새로운 데이터 소스가 액세스되는 경우 - 모델 객체는 일반적으로 그 변경 사항을 컨트롤러 객체에 전달하고, 컨트롤러 객체는 그에 따라 하나 이상의 뷰 객체를 업데이트하도록 요청합니다.
 
-A controller object acts as the intermediary between the application's view objects and its model objects. Controllers are often in charge of making sure the views have access to the model objects they need to display and act as the conduit through which views learn about changes to the model. Controller objects can also perform set-up and coordinating tasks for an application and manage the life cycles of other objects.
+컨트롤러 객체는 일반적인 유형에 따라 재사용 가능하거나 재사용 불가능할 수 있습니다. [코코아 컨트롤러 객체의 유형](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW7)은 코코아의 다양한 유형의 컨트롤러 객체를 설명합니다.
 
-In a typical Cocoa MVC design, when users enter a value or indicate a choice through a view object, that value or choice is communicated to a controller object. The controller object might interpret the user input in some application-specific way and then either may tell a model object what to do with this input—for example, "add a new value" or "delete the current record"—or it may have the model object reflect a changed value in one of its properties. Based on this same user input, some controller objects might also tell a view object to change an aspect of its appearance or behavior, such as telling a button to disable itself. Conversely, when a model object changes—say, a new data source is accessed—the model object usually communicates that change to a controller object, which then requests one or more view objects to update themselves accordingly.
+### 역할 합성하기
 
-Controller objects can be either reusable or nonreusable, depending on their general type. [Types of Cocoa Controller Objects](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW7) describes the different types of controller objects in Cocoa.
+객체가 수행하는 MVC 역할을 병합하여 객체가 컨트롤러와 뷰 역할을 모두 수행하도록 만들 수 있습니다. 이 경우 뷰 컨트롤러라고 불립니다. 같은 방식으로, 당신은 또한 모델-컨트롤러 객체를 가질 수 있습니다. 일부 응용 프로그램의 경우, 이와 같은 역할을 결합하는 것은 수용 가능한 설계입니다.
 
-### Combining Roles
+모델 컨트롤러는 주로 모델 레이어에 관심을 가진 컨트롤러입니다. 그것은 모델을 "소유"한다; 그것의 주요 책임은 모델을 관리하고 뷰 객체와 통신하는 것이다. 모델 전체에 적용되는 작업 방법은 일반적으로 모델 컨트롤러에서 구현됩니다. 문서 아키텍처는 이러한 여러 가지 방법을 제공합니다. 예를 들어, [NSDocument](https://developer.apple.com/documentation/appkit/nsdocument) 객체(문서 아키텍처의 중심 부분)는 파일 저장과 관련된 작업 방법을 자동으로 처리합니다.
 
-One can merge the MVC roles played by an object, making an object, for example, fulfill both the controller and view roles—in which case, it would be called a _view controller_. In the same way, you can also have model-controller objects. For some applications, combining roles like this is an acceptable design.
+뷰 컨트롤러는 주로 뷰 레이어와 관련된 컨트롤러입니다. 그것은 인터페이스(뷰)를 "소유"한다; 그것의 주요 책임은 인터페이스를 관리하고 모델과 소통하는 것이다. 뷰에 표시되는 데이터와 관련된 액션 메서드는 일반적으로 뷰 컨트롤러에서 구현됩니다. [NSWindowController](https://developer.apple.com/documentation/appkit/nswindowcontroller) 객체(또한 문서 아키텍처의 일부)는 뷰 컨트롤러의 예입니다.
 
-A _model controller_ is a controller that concerns itself mostly with the model layer. It “owns” the model; its primary responsibilities are to manage the model and communicate with view objects. Action methods that apply to the model as a whole are typically implemented in a model controller. The document architecture provides a number of these methods for you; for example, an `[NSDocument](https://developer.apple.com/documentation/appkit/nsdocument)` object (which is a central part of the document architecture) automatically handles action methods related to saving files.
+[MVC 애플리케이션에 대한 설계 지침](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW14)은 MVC 역할이 병합된 객체에 관한 몇 가지 설계 조언을 제공합니다.
 
-A view controller is a controller that concerns itself mostly with the view layer. It “owns” the interface (the views); its primary responsibilities are to manage the interface and communicate with the model. Action methods concerned with data displayed in a view are typically implemented in a view controller. An `[NSWindowController](https://developer.apple.com/documentation/appkit/nswindowcontroller)` object (also part of the document architecture) is an example of a view controller.
 
-[Design Guidelines for MVC Applications](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW14) offers some design advice concerning objects with merged MVC roles. 
+{% hint style="info" %} 
+**Further Reading**
+문서 기반 응용 프로그램 개요는 다른 관점에서 모델 컨트롤러와 뷰 컨트롤러의 차이점에 대해 논의합니다. {% endhint %}
 
-**Further Reading:** _Document-Based Applications Overview_ discusses the distinction between a model controller and a view controller from another perspective.
+## 코코아 컨트롤러 객체의 타입들
 
-## Types of Cocoa Controller Objects
+<a href="#Controller-Objects Tie-the-Model-to-the-View">컨트롤러 객체는 모델을 뷰에 연결합니다.</a>  컨트롤러 객체의 추상적인 윤곽을 스케치하지만 실제로는 그림이 훨씬 더 복잡합니다. 코코아에는 두 가지 일반적인 종류의 컨트롤러 개체가 있습니다: 중재 컨트롤러와 조정 컨트롤러. 각 종류의 컨트롤러 객체는 서로 다른 클래스 세트와 연관되어 있으며 각각 다른 동작 범위를 제공합니다.
 
-[Controller Objects Tie the Model to the View](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW21) sketches the abstract outline of a controller object, but in practice the picture is far more complex. In Cocoa there are two general kinds of controller objects: mediating controllers and coordinating controllers. Each kind of controller object is associated with a different set of classes and each provides a different range of behaviors.
-
-A _mediating controller_ is typically an object that inherits from the `[NSController](https://developer.apple.com/documentation/appkit/nscontroller)`class. Mediating controller objects are used in the Cocoa bindings technology. They facilitate—or mediate—the flow of data between view objects and model objects.
+중재 컨트롤러는 일반적으로 [NSController](https://developer.apple.com/documentation/appkit/nscontroller)class에서 상속되는 객체입니다. 중재 컨트롤러 객체는 코코아 바인딩 기술에 사용됩니다. 그들은 뷰 객체와 모델 객체 간의 데이터 흐름을 촉진하거나 중재합니다.
 
 **iOS Note:** AppKit implements the `NSController` class and its subclasses. These classes and the bindings technology are not available in iOS.
 
-Mediating controllers are typically ready-made objects that you drag from the Interface Builder library. You can configure these objects to establish the bindings between properties of view objects and properties of the controller object, and then between those controller properties and specific properties of a model object. As a result, when users change a value displayed in a view object, the new value is automatically communicated to a model object for storage—via the mediating controller; and when a property of a model changes its value, that change is communicated to a view for display. The abstract `NSController` class and its concrete subclasses—`[NSObjectController](https://developer.apple.com/documentation/appkit/nsobjectcontroller)`, `[NSArrayController](https://developer.apple.com/documentation/appkit/nsarraycontroller)`, `[NSUserDefaultsController](https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller)`, and `[NSTreeController](https://developer.apple.com/documentation/appkit/nstreecontroller)`—provide supporting features such as the ability to commit and discard changes and the management of selections and placeholder values.
+중재 컨트롤러는 일반적으로 인터페이스 빌더 라이브러리에서 드래그하는 기성 개체입니다. 이러한 객체를 구성하여 뷰 객체의 속성과 컨트롤러 객체의 속성 간의 바인딩을 설정한 다음 해당 컨트롤러 속성과 모델 객체의 특정 속성 간의 바인딩을 설정할 수 있습니다. 결과적으로, 사용자가 뷰 객체에 표시된 값을 변경하면, 새로운 값은 중재 컨트롤러를 통해 저장을 위해 모델 객체에 자동으로 전달되며, 모델의 속성이 값을 변경하면 해당 변경 사항은 표시를 위해 뷰에 전달됩니다. 추상적인 NSController 클래스와 그 구체적인 하위 클래스([NSObjectController](https://developer.apple.com/documentation/appkit/nsobjectcontroller), [NSArrayController](https://developer.apple.com/documentation/appkit/nsarraycontroller), [NSUserDefaultsController](https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller), 및 [NSTreeController](https://developer.apple.com/documentation/appkit/nstreecontroller))는 변경 사항을 커밋 및 폐기하는 기능 및 선택 및 자리 표시자 값 관리와 같은 지원 기능을 제공합니다.
 
-A _coordinating controller_ is typically an `[NSWindowController](https://developer.apple.com/documentation/appkit/nswindowcontroller)` or `[NSDocumentController](https://developer.apple.com/documentation/appkit/nsdocumentcontroller)`object (available only in AppKit), or an instance of a custom subclass of `[NSObject](https://developer.apple.com/library/archive/documentation/LegacyTechnologies/WebObjects/WebObjects_3.5/Reference/Frameworks/ObjC/Foundation/Classes/NSObject/Description.html#//apple_ref/occ/cl/NSObject)`. Its role in an application is to oversee—or coordinate—the functioning of the entire application or of part of the application, such as the objects unarchived from a nib file. A coordinating controller provides services such as:
 
-- Responding to delegation messages and observing notifications
+조정 컨트롤러는 일반적으로 [NSWindowController](https://developer.apple.com/documentation/appkit/nswindowcontroller) 또는 [NSDocumentController](https://developer.apple.com/documentation/appkit/nsdocumentcontroller)객체(AppKit에서만 사용 가능) 또는 [NSObject](https://developer.apple.com/library/archive/documentation/LegacyTechnologies/WebObjects/WebObjects_3.5/Reference/Frameworks/ObjC/Foundation/Classes/NSObject/Description.html#//apple_ref/occ/cl/NSObject)의 사용자 지정 하위 클래스의 인스턴스입니다. 응용 프로그램에서의 역할은 전체 응용 프로그램 또는 nib 파일에서 보관되지 않은 개체와 같은 응용 프로그램의 일부의 기능을 감독하거나 조정하는 것입니다. 조정 컨트롤러는 다음과 같은 서비스를 제공합니다:
+- 위임 메시지에 응답하고 알림 관찰하기
     
-- Responding to action messages
+- 액션 메시지에 응답하기
     
-- Managing the life cycle of owned objects (for example, releasing them at the proper time)
+- 소유한 객체의 수명 주기 관리 (예를 들어, 적절한 시기에 방출)
     
-- Establishing connections between objects and performing other set-up tasks
+- 객체 간의 연결 설정 및 기타 설정 작업 수행
+
+`NSWindowController` 및 `NSDocumentController`는 문서 기반 애플리케이션을 위한 Cocoa 아키텍처의 일부인 클래스입니다. 이러한 클래스의 인스턴스는 위에 나열된 여러 서비스에 대한 기본 구현을 제공하며, 더 많은 애플리케이션 특정 동작을 구현하기 위해 하위 클래스를 생성할 수 있습니다. `NSWindowController` 객체를 사용하여 문서 아키텍처를 기반으로 하지 않는 애플리케이션에서 창을 관리할 수도 있습니다.
+
+조정 컨트롤러는 종종 nib 파일에 보관된 객체를 소유합니다. 파일의 소유자로서, 조정 컨트롤러는 nib 파일의 객체 외부에 있으며 해당 개체를 관리합니다. 이러한 소유 객체에는 중재 컨트롤러뿐만 아니라 창 객체 및 뷰 객체가 포함됩니다. 파일의 소유자로서 컨트롤러를 조정하는 것에 대한 자세한 내용은 <a href="#MVC-as-a-Compound-Design-Pattern">복합 디자인 패턴으로서의 MVC</a> 를 참조하십시오.
+
+사용자 지정 `NSObject` 하위 클래스의 인스턴스는 조정 컨트롤러로 완전히 적합할 수 있습니다. 이러한 종류의 컨트롤러 객체는 중재 및 조정 기능을 모두 결합합니다. 그들의 중재 행동을 위해, 그들은 타겟-액션 아울렛, 위임 및 알림과 같은 메커니즘을 사용하여 뷰 객체와 모델 객체 간의 데이터 이동을 용이하게 합니다. 그것들은 많은 접착제 코드를 포함하는 경향이 있으며, 그 코드는 독점적으로 응용 프로그램에 특화되어 있기 때문에 응용 프로그램에서 가장 재사용 가능한 종류의 객체입니다.
+
+
+{% hint style="info" %} 
+**다음에 읽기**
+코코아 바인딩 기술에 대한 자세한 내용은 [Cocoa Bindings Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i) 보세요.
+{% endhint %}
+
+## 복합 디자인 패턴으로서의 MVC <a id="MVC-as-a-Compound-Design-Pattern"></a>
+
+모델-뷰-컨트롤러는 몇 가지 더 기본적인 디자인 패턴으로 구성된 디자인 패턴입니다. 이러한 기본 패턴은 MVC 애플리케이션의 특징인 기능적 분리 및 통신 경로를 정의하기 위해 함께 작동합니다. 그러나 MVC의 전통적인 개념은 Cocoa가 할당하는 것과는 다른 기본 패턴 세트를 할당합니다. 차이점은 주로 컨트롤러에 부여된 역할과 애플리케이션의 뷰 객체에 있습니다.
+
+원래 (스몰토크) 개념에서 MVC는 복합, 전략 및 옵저버 패턴으로 구성되어 있습니다.
+
+- 복합 — 응용 프로그램의 뷰 객체는 실제로 조정된 방식(즉, 뷰 계층 구조)으로 함께 작동하는 중첩된 뷰의 합성물입니다. 이러한 디스플레이 구성 요소는 창에서 테이블 뷰와 같은 복합 뷰, 버튼과 같은 개별 뷰에 이르기까지 다양합니다. 사용자 입력 및 표시는 복합 구조의 모든 수준에서 가능합니다.
     
-
-`NSWindowController` and `NSDocumentController` are classes that are part of the Cocoa architecture for document-based applications. Instances of these classes provide default implementations for several of the services listed above, and you can create subclasses of them to implement more application-specific behavior. You can even use `NSWindowController` objects to manage windows in an application that is not based on the document architecture. 
-
-A coordinating controller frequently owns the objects archived in a nib file. As File’s Owner, the coordinating controller is external to the objects in the nib file and manages those objects. These owned objects include mediating controllers as well as window objects and view objects. See [MVC as a Compound Design Pattern](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW9) for more on coordinating controllers as File's Owner.
-
-Instances of custom `NSObject` subclasses can be entirely suitable as coordinating controllers. These kinds of controller objects combine both mediating and coordinating functions. For their mediating behavior, they make use of mechanisms such as target-action, outlets, delegation, and notifications to facilitate the movement of data between view objects and model objects. They tend to contain a lot of glue code and, because that code is exclusively application-specific, they are the least reusable kind of object in an application. 
-
-**Further Reading:** For more on the Cocoa bindings technology, see _[Cocoa Bindings Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i)_.
-
-## MVC as a Compound Design Pattern
-
-Model-View-Controller is a design pattern that is composed of several more basic design patterns. These basic patterns work together to define the functional separation and paths of communication that are characteristic of an MVC application. However, the traditional notion of MVC assigns a set of basic patterns different from those that Cocoa assigns. The difference primarily lies in the roles given to the controller and view objects of an application.
-
-In the original (Smalltalk) conception, MVC is made up of the Composite, Strategy, and Observer patterns.
-
-- Composite—The view objects in an application are actually a composite of nested views that work together in a coordinated fashion (that is, the view hierarchy). These display components range from a window to compound views, such as a table view, to individual views, such as buttons. User input and display can take place at any level of the composite structure. 
+- 전략—컨트롤러 객체는 하나 이상의 뷰 객체에 대한 전략을 구현합니다. 뷰 객체는 시각적 측면을 유지하는 것으로 제한되며, 인터페이스 동작의 애플리케이션 특정 의미에 대한 모든 결정을 컨트롤러에게 위임합니다.
     
-- Strategy—A controller object implements the strategy for one or more view objects. The view object confines itself to maintaining its visual aspects, and it delegates to the controller all decisions about the application-specific meaning of the interface behavior.
-    
-- Observer—A model object keeps interested objects in an application—usually view objects—advised of changes in its state.
-    
+- 옵저버—모델 객체는 애플리케이션 내에서 관심 있는 객체들(보통 뷰 객체)에 자신의 상태 변화를 **알립니다**.
 
-The traditional way the Composite, Strategy, and Observer patterns work together is depicted by Figure 7-1: The user manipulates a view at some level of the composite structure and, as a result, an event is generated. A controller object receives the event and interprets it in an application-specific way—that is, it applies a strategy. This strategy can be to request (via message) a model object to change its state or to request a view object (at some level of the composite structure) to change its behavior or appearance. The model object, in turn, notifies all objects who have registered as observers when its state changes; if the observer is a view object, it may update its appearance accordingly.
+복합, 전략 및 옵저버 패턴이 함께 작동하는 전통적인 방식은 그림 7-1에 묘사되어 있습니다: 사용자는 복합 구조의 일부 수준에서 뷰를 조작하고, 결과적으로 이벤트가 생성됩니다. 컨트롤러 객체는 이벤트를 수신하고 애플리케이션 특정 방식으로 해석합니다. 즉, 전략을 적용합니다. 이 전략은 (메시지를 통해) 모델 객체를 요청하여 상태를 변경하거나 뷰 객체(복합 구조의 일부 수준에서)를 요청하여 동작 또는 모양을 변경할 수 있습니다. 모델 객체는, 차례로, 상태가 변경될 때 옵저버로 등록된 모든 객체를 알립니다; 옵저버가 뷰 객체인 경우, 그에 따라 모양을 업데이트할 수 있습니다.
 
-**Figure 7-1**  Traditional version of MVC as a compound pattern
+**그림 7-1**  복합 패턴으로서의 MVC의 전통적인 버전
 
-![Traditional version of MVC as a compound pattern](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/traditional_mvc.gif)
+<div align="left">
+<img src = https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/traditional_mvc.gif width="500" height="auto">
+</div>
 
-The Cocoa version of MVC as a compound pattern has some similarities to the traditional version, and in fact it is quite possible to construct a working application based on the diagram in Figure 7-1. By using the bindings technology, you can easily create a Cocoa MVC application whose views directly observe model objects to receive notifications of state changes. However, there is a theoretical problem with this design. View objects and model objects should be the most reusable objects in an application. View objects represent the "look and feel" of an operating system and the applications that system supports; consistency in appearance and behavior is essential, and that requires highly reusable objects. Model objects by definition encapsulate the data associated with a problem domain and perform operations on that data. Design-wise, it's best to keep model and view objects separate from each other, because that enhances their reusability.
+복합 패턴으로서의 MVC의 코코아 버전은 전통적인 버전과 몇 가지 유사점을 가지고 있으며, 실제로 그림 7-1의 다이어그램을 기반으로 작업 응용 프로그램을 구성하는 것이 매우 가능합니다. 바인딩 기술을 사용하면 뷰가 모델 객체를 직접 관찰하여 상태 변경 알림을 수신하는 Cocoa MVC 애플리케이션을 쉽게 만들 수 있습니다. 그러나, 이 디자인에는 이론적인 문제가 있다. 뷰 객체와 모델 객체는 애플리케이션에서 가장 재사용 가능한 객체여야 합니다. 뷰 객체는 운영 체제와 시스템이 지원하는 애플리케이션의 "모양과 느낌"을 나타냅니다; 외관과 동작의 일관성은 필수적이며, 이를 위해서는 재사용 가능한 객체가 필요합니다. 정의에 따라 모델 객체는 문제 도메인과 관련된 데이터를 캡슐화하고 해당 데이터에 대한 작업을 수행합니다. 디자인적으로, 모델과 뷰 오브젝트를 서로 분리하는 것이 가장 좋습니다. 재사용성이 향상되기 때문입니다.
 
-In most Cocoa applications, notifications of state changes in model objects are communicated to view objects _through_controller objects. Figure 7-2 shows this different configuration, which appears much cleaner despite the involvement of two more basic design patterns.
+대부분의 Cocoa 애플리케이션에서, 모델 객체의 상태 변경 알림은 컨트롤러 객체를 통해 뷰 객체에 전달됩니다. 그림 7-2는 두 가지 기본 디자인 패턴이 더 관련되어 있음에도 불구하고 훨씬 더 깔끔해 보이는 이 다른 구성을 보여줍니다.
 
-**Figure 7-2**  Cocoa version of MVC as a compound design pattern
+**그림 7-2**  복합 디자인 패턴으로서의 MVC의 코코아 버전
 
-![Cocoa version of MVC as compound design pattern](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc.gif)
+<div align="left">
+<img src = https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc.gif width="500" height="auto">
+</div>
 
-The controller object in this compound design pattern incorporates the Mediator pattern as well as the Strategy pattern; it mediates the flow of data between model and view objects in both directions. Changes in model state are communicated to view objects through the controller objects of an application. In addition, view objects incorporate the Command pattern through their implementation of the target-action mechanism. 
+이 복합 디자인 패턴의 컨트롤러 객체는 전략 패턴뿐만 아니라 중재자 패턴을 통합합니다; 그것은 양방향으로 모델과 뷰 객체 간의 데이터 흐름을 중재합니다. 모델 상태의 변경 사항은 애플리케이션의 컨트롤러 객체를 통해 뷰 객체에 전달됩니다. 또한, 뷰 객체는 타겟-액션 메커니즘의 구현을 통해 명령 패턴을 통합합니다.
 
-**Note:** The target-action mechanism, which enables view objects to communicate user input and choices, can be implemented in both coordinating and mediating controller objects. However, the design of the mechanism differs in each controller type. For coordinating controllers, you connect the view object to its target (the controller object) in Interface Builder and specify an action selector that must conform to a certain signature. Coordinating controllers, by virtue of being delegates of windows and the global application object, can also be in the responder chain. The bindings mechanism used by mediating controllers also connects view objects to targets and allows action signatures with a variable number of parameters of arbitrary types. Mediating controllers, however, aren’t in the responder chain.
 
-There are practical reasons as well as theoretical ones for the revised compound design pattern depicted in Figure 7-2, especially when it comes to the Mediator design pattern. Mediating controllers derive from concrete subclasses of `NSController`, and these classes, besides implementing the Mediator pattern, offer many features that applications should take advantage of, such as the management of selections and placeholder values. And if you opt not to use the bindings technology, your view object could use a mechanism such as the Cocoa notification center to receive notifications from a model object. But this would require you to create a custom view subclass to add the knowledge of the notifications posted by the model object. 
+{% hint style="info" %} 
+**노트**
+뷰 객체가 사용자 입력과 선택을 전달할 수 있도록 하는 타겟-액션 메커니즘은 컨트롤러 객체를 조정하고 중재하는 데 모두 구현될 수 있습니다. 그러나, 메커니즘의 디자인은 각 컨트롤러 유형마다 다릅니다. 컨트롤러를 조정하려면 인터페이스 빌더에서 뷰 객체를 타겟(컨트롤러 객체)에 연결하고 특정 서명을 준수해야 하는 액션 셀렉터를 지정합니다. 조정 컨트롤러는 윈도우와 글로벌 애플리케이션 객체의 대리인이기 때문에 응답자 체인에도 있을 수 있습니다. 중재 컨트롤러가 사용하는 바인딩 메커니즘은 또한 뷰 객체를 타겟에 연결하고 임의의 유형의 가변 수의 매개 변수로 액션 서명을 허용합니다. 그러나 중재 컨트롤러는 응답자 체인에 있지 않습니다. 
+{% endhint %}
 
-In a well-designed Cocoa MVC application, coordinating controller objects often own mediating controllers, which are archived in nib files.  Figure 7-3 shows the relationships between the two types of controller objects.
+특히 중재자 설계 패턴에 관해서는 그림 7-2에 묘사된 개정된 복합 설계 패턴에 대한 이론적 이유뿐만 아니라 실용적인 이유가 있습니다. 중재 컨트롤러는 NSController의 구체적인 하위 클래스에서 파생되며, 이러한 클래스는 중재자 패턴을 구현하는 것 외에도 선택 및 자리 표시자 값 관리와 같이 애플리케이션이 활용해야 할 많은 기능을 제공합니다. 그리고 바인딩 기술을 사용하지 않기로 선택한 경우, 뷰 객체는 모델 개객로부터 알림을 받기 위해 Cocoa 알림 센터와 같은 메커니즘을 사용할 수 있습니다. 그러나 이를 위해서는 모델 객체에 의해 게시된 알림에 대한 지식을 추가하기 위해 사용자 지정  하위 클래스를 만들어야 합니다.
 
-**Figure 7-3**  Coordinating controller as the owner of a nib file
+잘 설계된 Cocoa MVC 애플리케이션에서, 조정 컨트롤러 개체는 종종 nib 파일에 보관되는 중재 컨트롤러를 소유합니다. 그림 7-3은 두 가지 유형의 컨트롤러 개체 간의 관계를 보여줍니다.
 
-![Coordinating controller as the owner of a nib file](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc_coord.gif)
+**그림 7-3**  nib 파일의 소유자로서 컨트롤러 조정
 
-## Design Guidelines for MVC Applications
+<div align="left">
+<img src = https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Art/cocoa_mvc_coord.gif width="300" height="auto">
+</div>
 
-The following guidelines apply to Model-View-Controller considerations in the design of applications:
+## MVC 어플리케이션 디자인 가이드라인들
 
-- Although you can use an instance of a custom subclass of `[NSObject](https://developer.apple.com/library/archive/documentation/LegacyTechnologies/WebObjects/WebObjects_3.5/Reference/Frameworks/ObjC/Foundation/Classes/NSObject/Description.html#//apple_ref/occ/cl/NSObject)` as a mediating controller, there's no reason to go through all the work required to make it one. Use instead one of the ready-made `[NSController](https://developer.apple.com/documentation/appkit/nscontroller)` objects designed for the Cocoa bindings technology; that is, use an instance of `[NSObjectController](https://developer.apple.com/documentation/appkit/nsobjectcontroller)`, `[NSArrayController](https://developer.apple.com/documentation/appkit/nsarraycontroller)`, `[NSUserDefaultsController](https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller)`, or `[NSTreeController](https://developer.apple.com/documentation/appkit/nstreecontroller)`—or a custom subclass of one of these concrete `NSController`subclasses.
-    
-    However, if the application is very simple and you feel more comfortable writing the glue code needed to implement mediating behavior using outlets and target-action, feel free to use an instance of a custom `NSObject` subclass as a mediating controller. In a custom `NSObject` subclass, you can also implement a mediating controller in the `NSController` sense, using key-value coding, key-value observing, and the editor protocols.
-    
-- Although you can combine MVC roles in an object, the best overall strategy is to keep the separation between roles. This separation enhances the reusability of objects and the extensibility of the program they're used in. If you are going to merge MVC roles in a class, pick a predominant role for that class and then (for maintenance purposes) use categories in the same implementation file to extend the class to play other roles.
-    
-- A goal of a well-designed MVC application should be to use as many objects as possible that are (theoretically, at least) reusable. In particular, view objects and model objects should be highly reusable. (The ready-made mediating controller objects, of course, are reusable.) Application-specific behavior is frequently concentrated as much as possible in controller objects.
-    
-- Although it is possible to have views directly observe models to detect changes in state, it is best not to do so. A view object should always go through a mediating controller object to learn about changes in an model object. The reason is two-fold: 
-    
-    - If you use the bindings mechanism to have view objects directly observe the properties of model objects, you bypass all the advantages that `NSController` and its subclasses give your application: selection and placeholder management as well as the ability to commit and discard changes. 
-        
-    - If you don't use the bindings mechanism, you have to subclass an existing view class to add the ability to observe change notifications posted by a model object. 
-        
-- Strive to limit code dependency in the classes of your application. The greater the dependency a class has on another class, the less reusable it is. Specific recommendations vary by the MVC roles of the two classes involved:
-    
-    - A view class shouldn't depend on a model class (although this may be unavoidable with some custom views).
-        
-    - A view class shouldn't have to depend on a mediating controller class.
-        
-    - A model class shouldn't depend on anything other than other model classes.
-        
-    - A mediating controller class shouldn’t depend on a model class (although, like views, this may be necessary if it's a custom controller class).
-        
-    - A mediating controller class shouldn't depend on view classes or on coordinating controller classes.
-        
-    - A coordinating controller class depends on classes of all MVC role types.
-        
-- If Cocoa offers an architecture that solves a programming problem, and this architecture assigns MVC roles to objects of specific types, use that architecture. It will be much easier to put your project together if you do. The document architecture, for example, includes an Xcode project template that configures an `[NSDocument](https://developer.apple.com/documentation/appkit/nsdocument)` object (per-nib model controller) as File's Owner. 
-    
+다음 지침은 애플리케이션 설계 시 모델-뷰-컨트롤러 고려 사항에 적용됩니다:
+
+- [NSObject](https://developer.apple.com/library/archive/documentation/LegacyTechnologies/WebObjects/WebObjects_3.5/Reference/Frameworks/ObjC/Foundation/Classes/NSObject/Description.html#//apple_ref/occ/cl/NSObject)의 사용자 지정 하위 클래스의 인스턴스를 중재 컨트롤러로 사용할 수 있지만, 하나를 만들기 위해 필요한 모든 작업을 거쳐야 할 이유는 없습니다. 대신 Cocoa 바인딩 기술을 위해 설계된 기성품 [NSController](https://developer.apple.com/documentation/appkit/nscontroller) 객체 중 하나를 사용하십시오. 즉, [NSObjectController](https://developer.apple.com/documentation/appkit/nsobjectcontroller), [NSArrayController](https://developer.apple.com/documentation/appkit/nsarraycontroller), [NSUserDefaultsController](https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller) 또는 [NSTreeController](https://developer.apple.com/documentation/appkit/nstreecontroller)의 인스턴스를 사용하거나 이러한 구체적인 `NSController` 하위 클래스 중 하나의 사용자 지정 하위 클래스를 사용하십시오.
+  
+  그러나 애플리케이션이 매우 간단하고 콘센트 및 타겟 액션을 사용하여 중재 동작을 구현하는 데 필요한 접착제 코드를 작성하는 것이 더 편안하다고 생각되면 사용자 지정 `NSObject` 하위 클래스의 인스턴스를 중재 컨트롤러로 자유롭게 사용하십시오. 사용자 지정 `NSObject` 하위 클래스에서 키-값 코딩, 키-값 관찰 및 편집기 프로토콜을 사용하여 NSController 의미에서 중재 컨트롤러를 구현할 수도 있습니다.
+
+- MVC 역할을 객체에 결합할 수 있지만, 가장 좋은 전반적인 전략은 역할 간의 분리를 유지하는 것입니다. 이 분리는 객체의 재사용성과 객체가 사용되는 프로그램의 확장성을 향상시킵니다. 클래스에서 MVC 역할을 병합하려는 경우 해당 클래스에 대한 주요 역할을 선택한 다음 (유지 관리 목적으로) 동일한 구현 파일의 범주를 사용하여 클래스를 확장하여 다른 역할을 수행하십시오.
+
+- 잘 설계된 MVC 애플리케이션의 목표는 (이론적으로, 적어도)  많은 객체를 재사용하는 것이어야 합니다. 특히, 뷰 객체와 모델 객체는 재사용성이 높아야 한다. (물론 기성품 중재 컨트롤러 객체는 재사용이 가능합니다.) 애플리케이션 특정 동작은 컨트롤러 객체에 가능한 한 집중되는 경우가 많습니다.
+
+- 상태의 변화를 감지하기 위해 모델을 직접 관찰하는 것은 가능하지만, 그렇게 하지 않는 것이 가장 좋습니다. 뷰 객체는 모델 객체의 변화에 대해 배우기 위해 항상 중재 컨트롤러 객체를 거쳐야 합니다. 그 이유는 두 가지가 있다:
+	- 바인딩 메커니즘을 사용하여 뷰 객체가 모델 객체의 속성을 직접 관찰하도록 하는 경우, `NSController` 및 그 하위 클래스가 애플리케이션에 제공하는 모든 이점을 우회합니다: 선택 및 자리 표시자 관리는 물론 변경 사항을 커밋 및 폐기하는 기능.
+	- 바인딩 메커니즘을 사용하지 않는 경우, 모델 객체에 의해 게시된 변경 알림을 관찰하는 기능을 추가하기 위해 기존 뷰 클래스를 하위 클래스로 분류해야 합니다.
+
+- 응용 프로그램의 클래스에서 코드 종속성을 제한하기 위해 노력하십시오. 클래스가 다른 클래스에 대한 의존성이 클수록 재사용이 줄어듭니다. 구체적인 권장 사항은 관련된 두 클래스의 MVC 역할에 따라 다릅니다.
+	- 뷰 클래스는 모델 클래스에 의존해서는 안 됩니다(일부 사용자 지정 뷰에서는 피할 수 없지만).
+	- 뷰 클래스는 중재 컨트롤러 클래스에 의존할 필요가 없어야 합니다.
+	- 모델 클래스는 다른 모델 클래스 이외의 다른 것에 의존해서는 안 된다.
+	- 중재 컨트롤러 클래스는 모델 클래스에 의존해서는 안 됩니다(비록 뷰와 마찬가지로 사용자 지정 컨트롤러 클래스인 경우 필요할 수 있음).
+	- 중재 컨트롤러 클래스는 뷰 클래스 또는 조정 컨트롤러 클래스에 의존해서는 안 됩니다.
+	- 조정 컨트롤러 클래스는 모든 MVC 역할 유형의 클래스에 따라 달라집니다.
+
+코코아가 프로그래밍 문제를 해결하는 아키텍처를 제공하고 이 아키텍처가 특정 유형의 객체에 MVC 역할을 할당하는 경우 해당 아키텍처를 사용하십시오. 그렇게 한다면 프로젝트를 정리하는 것이 훨씬 쉬울 것입니다. 예를 들어, 문서 아키텍처에는 [NSDocument](https://developer.apple.com/documentation/appkit/nsdocument) 객체(per-nib 모델 컨트롤러)를 파일 소유자로 구성하는 Xcode 프로젝트 템플릿이 포함됩니다.
+
 
 ## Model-View-Controller in Cocoa (OS X)
 
-The Model-View-Controller design pattern is fundamental to many Cocoa mechanisms and technologies. As a consequence, the importance of using MVC in object-oriented design goes beyond attaining greater reusability and extensibility for your own applications. If your application is to incorporate a Cocoa technology that is MVC-based, your application will work best if its design also follows the MVC pattern. It should be relatively painless to use these technologies if your application has a good MVC separation, but it will take more effort to use such a technology if you don’t have a good separation.
+모델-뷰-컨트롤러 디자인 패턴은 많은 코코아 메커니즘과 기술의 기본이다. 결과적으로, 객체 지향 설계에서 MVC를 사용하는 것의 중요성은 자신의 애플리케이션에 대해 더 큰 재사용성과 확장성을 달성하는 것 이상입니다. 귀하의 애플리케이션이 MVC 기반인 코코아 기술을 통합하는 경우, 귀하의 애플리케이션은 디자인도 MVC 패턴을 따른다면 가장 잘 작동합니다. 애플리케이션에 MVC 분리가 좋은 경우 이러한 기술을 사용하는 것이 상대적으로 고통스럽지 않지만, 분리가 좋지 않은 경우 이러한 기술을 사용하는 데 더 많은 노력이 필요합니다.
 
-Cocoa in OS X includes the following architectures, mechanisms, and technologies that are based on Model-View-Controller:
+OS X의 Cocoa에는 Model-View-Controller를 기반으로 하는 다음과 같은 아키텍처, 메커니즘 및 기술이 포함되어 있습니다:
 
-- **Document architecture**. In this architecture, a document-based application consists of a controller object for the entire application (`[NSDocumentController](https://developer.apple.com/documentation/appkit/nsdocumentcontroller)`), a controller object for each document window (`[NSWindowController](https://developer.apple.com/documentation/appkit/nswindowcontroller)`), and an object that combines controller and model roles for each document (`[NSDocument](https://developer.apple.com/documentation/appkit/nsdocument)`).
+- **Document architecture**. 이 아키텍처에서 문서 기반 애플리케이션은 전체 애플리케이션에 대한 컨트롤러 객체([NSDocumentController](https://developer.apple.com/documentation/appkit/nsdocumentcontroller)), 각 문서 창에 대한 컨트롤러 객체([NSWindowController](https://developer.apple.com/documentation/appkit/nswindowcontroller)), 각 문서에 대한 컨트롤러 및 모델 역할을 결합한 객체([NSDocument](https://developer.apple.com/documentation/appkit/nsdocument))로 구성됩니다.
+
+- **바인딩**. MVC는 코코아의 바인딩 기술의 중심이다. 추상 [NSController](https://developer.apple.com/documentation/appkit/nscontroller)의 구체적인 하위 클래스는 뷰 객체와 적절하게 설계된 모델 객체 간의 바인딩을 설정하도록 구성할 수 있는 기성 컨트롤러 개체를 제공합니다.
     
-- **Bindings**. MVC is central to the bindings technology of Cocoa. The concrete subclasses of the abstract `[NSController](https://developer.apple.com/documentation/appkit/nscontroller)`provide ready-made controller objects that you can configure to establish bindings between view objects and properly designed model objects.
+- **Application scriptability**. 스크립트가 가능하도록 응용 프로그램을 설계할 때 MVC 설계 패턴을 따를 뿐만 아니라 응용 프로그램의 모델 객체가 적절하게 설계되어야 합니다. 애플리케이션 상태에 액세스하고 애플리케이션 동작을 요청하는 스크립팅 명령은 일반적으로 모델 객체 또는 컨트롤러 객체로 전송되어야 합니다.
     
-- **Application scriptability**. When designing an application to make it scriptable, it is essential not only that it follow the MVC design pattern but that your application’s model objects are properly designed. Scripting commands that access application state and request application behavior should usually be sent to model objects or controller objects. 
-    
-- **Core Data**. The Core Data framework manages graphs of model objects and ensures the persistence of those objects by saving them to (and retrieving them from) a persistent store. Core Data is tightly integrated with the Cocoa bindings technology. The MVC and object modeling design patterns are essential determinants of the Core Data architecture. 
-    
-- **Undo**. In the undo architecture, model objects once again play a central role. The primitive methods of model objects (which are usually its accessor methods) are often where you implement undo and redo operations. The view and controller objects of an action may also be involved in these operations; for example, you might have such objects give specific titles to the undo and redo menu items, or you might have them undo selections in a text view.
+- **Core Data**. 코어 데이터 프레임워크는 모델 객체의 그래프를 관리하고 영구 저장소에 저장(그리고 영구 저장소에서 검색)하여 해당 객체의 지속성을 보장합니다. 코어 데이터는 코코아 바인딩 기술과 긴밀하게 통합되어 있습니다. MVC 및 객체 모델링 설계 패턴은 코어 데이터 아키텍처의 필수 결정 요인입니다.
+
+- **Undo**. 실행 취소 아키텍처에서, 모델 객체는 다시 한 번 중심적인 역할을 한다. 모델 객체(일반적으로 접근자 메서드)의 기본 메서드는 종종 실행 취소 및 다시 실행 작업을 구현하는 곳입니다. 액션의 뷰 및 컨트롤러 객체도 이러한 작업에 관련될 수 있습니다. 예를 들어, 이러한 객체가 실행 취소 및 다시 실행 메뉴 항목에 특정 제목을 부여하도록 하거나 텍스트 뷰에서 선택 항목을 실행 취소하도록 할 수 있습니다.
