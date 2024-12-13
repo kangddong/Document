@@ -45,6 +45,22 @@
 
 ## Documentation Archive
 
+- [Objective-C 프로그램 속 컨셉](documentation-archive/concepts-in-Objective-C-programming/Introduction.md)
+	- [Introduction](documentation-archive/concepts-in-Objective-C-programming/Introduction.md)
+	- [Class Clusters](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html#//apple_ref/doc/uid/TP40010810-CH4-SW1)
+	- [Class Factory Methods](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/ClassFactoryMethods/ClassFactoryMethods.html#//apple_ref/doc/uid/TP40010810-CH8-SW1)
+	- [Delegates and Data Sources](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/DelegatesandDataSources/DelegatesandDataSources.html#//apple_ref/doc/uid/TP40010810-CH11-SW1)
+	- [Introspection](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Introspection/Introspection.html#//apple_ref/doc/uid/TP40010810-CH9-SW1)
+	- [Object Allocation](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/ObjectAllocation/ObjectAllocation.html#//apple_ref/doc/uid/TP40010810-CH7-SW1)
+	- [Object Initialization](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Initialization/Initialization.html#//apple_ref/doc/uid/TP40010810-CH6-SW1)
+	- [Model-View-Controller](documentation-archive/concepts-in-Objective-C-programming/mvc.md)
+	- [Object Modeling](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/ObjectModeling/ObjectModeling.html#//apple_ref/doc/uid/TP40010810-CH15-SW1)
+	- [Object Mutability](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/ObjectMutability/ObjectMutability.html#//apple_ref/doc/uid/TP40010810-CH5-SW1)
+	- [Outlets](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Outlets/Outlets.html#//apple_ref/doc/uid/TP40010810-CH10-SW1)
+	- [Receptionist Pattern](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/ReceptionistPattern/ReceptionistPattern.html#//apple_ref/doc/uid/TP40010810-CH13-SW1)
+	- [Target-Action](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Target-Action/Target-Action.html#//apple_ref/doc/uid/TP40010810-CH12-SW1)
+	- [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2-SW1)
+
 - [Core Data 프로그래밍 가이드](documentation-archive/core-data-programming-guide/README.md)
     - [Getting Started](documentation-archive/core-data-programming-guide/what-is-core-data.md)
         - [What Is Core Data?](documentation-archive/core-data-programming-guide/what-is-core-data.md)
